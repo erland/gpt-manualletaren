@@ -46,3 +46,12 @@ Kör den installerade ChatGPT Chat-distributionen med T1–T5 från `docs/RUNTIM
 - Paketets filer är granskade lokalt, men paketet har **inte** aktiverats som en ny separat ChatGPT-session.
 - `runtime_host_tests_verified=false`, `live_manual_matching_verified=false`, `release_ready=false`.
 - Nästa gate: Kör en faktisk session med ChatGPT Chat-ZIP och få ett manuellt bedömt transcript för (1) exakt modell+öppnad användarmanual och (2) ofullständig Bosch-revision med följdfråga.
+
+
+## A5 – Användarrapporterat fullständigt ChatGPT-test, 2026-10-11
+- Testaren uppger att Manualletaren användes i en separat ChatGPT-konversation.
+- Rapport: GPT:n ställde relevanta identifieringsfrågor och gav korrekt manual.
+- Delad konversation: https://chatgpt.com/share/6acb1a90-b8d8-83ed-ab70-f30f7ae60a47
+- Resultat: **GODKÄNT enligt användarens bedömning** för identifieringsdialog och manualresultat.
+- Begränsning: samtalsinnehåll, exakt modellkod, manual-URL och PDF-innehåll har inte kunnat granskas oberoende. Äldre A1–A4-utfall ändras inte retroaktivt.
+- Releasebeslut: en stark positiv signal för ChatGPT Chat, men `runtime_host_tests_verified` och `release_ready` i strukturerad status förblir `false` tills dokumenterade belägg och tillämpliga gates finns.
