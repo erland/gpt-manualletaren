@@ -1,0 +1,6 @@
+dist/
+release-assets/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/

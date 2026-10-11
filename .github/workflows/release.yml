@@ -12,12 +12,45 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python3 scripts/validate_project.py
-      - run: python3 -m unittest discover -s tests -v
-      - run: python3 scripts/build.py --version "${GITHUB_REF_NAME#v}"
+      - name: Validate project
+        run: |
+          python3 scripts/validate_project.py
+          python3 -m unittest discover -s tests -v
+      - name: Build only current release
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          rm -rf dist
+          python3 scripts/build.py --version "$VERSION"
+      - name: Verify and stage release artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          python3 - "$VERSION" <<'PY'
+          import json, sys, zipfile, shutil
+          from pathlib import Path
+          version=sys.argv[1]
+          manifest=json.loads(Path('dist/manifest.json').read_text(encoding='utf-8'))
+          assert manifest['version']==version
+          distributions=manifest['distributions']
+          expected={'chatgpt-chat','openai-plugin','claude-projects','claude-skills','opencode'}
+          assert {x['runtime'] for x in distributions}==expected and len(distributions)==5
+          project=Path('..')/f'manualletaren-project-v{version}.zip'
+          paths=[project]+[Path('dist')/x['file'] for x in distributions]
+          stage=Path('release-assets')
+          stage.mkdir(exist_ok=True)
+          for p in paths:
+              assert p.is_file(), f'Missing artifact: {p}'
+              with zipfile.ZipFile(p) as z:
+                  assert z.testzip() is None, f'Corrupt ZIP: {p}'
+              shutil.copy2(p,stage/p.name)
+          shutil.copy2('dist/manifest.json',stage/'manifest.json')
+          assert len(list(stage.glob('*.zip')))==6
+          print('Verified six current-version ZIP files and manifest')
+          PY
       - uses: softprops/action-gh-release@v2
         with:
-          files: |
-            ../manualletaren-project-*.zip
-            dist/*.zip
-            dist/manifest.json
+          fail_on_unmatched_files: true
+          files: release-assets/*

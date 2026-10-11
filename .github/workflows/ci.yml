@@ -13,4 +13,7 @@ jobs:
           python-version: '3.12'
       - run: python3 scripts/validate_project.py
       - run: python3 -m unittest discover -s tests -v
-      - run: python3 scripts/build_distributions.py --version ci-test
+      - name: Smoke-test the complete release build
+        run: |
+          rm -rf dist
+          python3 scripts/build.py --version ci-test
