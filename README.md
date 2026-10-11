@@ -1,34 +1,44 @@
 # Manualletaren
 
-En svenskspråkig GPT som identifierar produkter och hittar rätt användarmanual med verifierbara källor.
+En svenskspråkig GPT som hjälper användare att identifiera produkter och hitta rätt användarmanual med verifierbara källor, även utan exakt modellbeteckning.
 
-**Status:** v0.4.0-dev, steg 4 (runtimegranskning). Detta är ett utvecklingsprojekt, inte en validerad release.
+**Aktuell projektversion:** v0.7.0-dev. **Status:** utvecklingsprojekt med godkänd GitHub-CI och användarrapporterat lyckat ChatGPT-test. Ingen stabil release eller verifierad runtimeparitet ännu.
 
 ## Så fungerar det
-1. Tolka användarens produktuppgifter, även osäkra.
-2. Sök först officiella tillverkarkällor och modellbeteckningar.
-3. Hitta kandidater och ställ en riktad följdfråga när modellen inte kan särskiljas.
-4. Kontrollera att manualen gäller den identifierade modellen.
-5. Leverera källhänvisad länk med språk och matchningsstatus.
 
-Se `docs/MANUAL-SEARCH.md` för källhierarki, manualverifiering och verkliga sökingångar. Se `docs/IDENTIFICATION.md` för beslutsregler och `src/identification/matcher.py` för den konservativa, deterministiska kandidatenheten. Dessa ersätter inte verklig webbsökning eller granskning av manualinnehåll.
+1. Tolka användarens uppgifter, även ofullständiga eller osäkra.
+2. Sök produktkandidater hos tillverkare och andra kontrollerbara källor.
+3. Ställ en riktad följdfråga när flera modeller eller revisioner återstår.
+4. Kontrollera manualens dokumenttyp, källa och uttryckliga modell-/variantstöd.
+5. Presentera relevant länk med språk och tydlig matchningsstatus.
 
-## Kom igång
-- Börja i `src/canonical/instructions.md` (auktoritativa beteenderegler).
-- Läs `docs/PROJECT-PLAN.md`, `project/status.json` och `docs/RUNTIME-PARITY.md`.
-- Kör `python3 scripts/validate_project.py` och `python3 -m unittest discover -s tests -v`.
-- Bygg paket: `python3 scripts/build.py --version 0.4.0-dev`.
+## Projektets källor och status
 
-Distributioner är ännu inte aktiverade: steg 3 omfattar manualsökningsregler och verifierade sökingångar, men inte automatiserad live-PDF-granskning, inte en påstått verifierad runtime.
+- Canonical instruktion: `src/canonical/instructions.md`
+- Produktidentifiering: `docs/IDENTIFICATION.md`
+- Manualsökning och beläggskrav: `docs/MANUAL-SEARCH.md`
+- Utvecklingsplan: `docs/PROJECT-PLAN.md`
+- Strukturerad projektstatus: `project/status.json`
+- Runtimebegränsningar: `docs/RUNTIME-PARITY.md`
+- Distributionsbeskrivning: `docs/DISTRIBUTIONS.md`
+- Acceptanstester: `docs/ACCEPTANCE-TESTS.md`
 
-## Runtimebeslut steg 4
-Se `docs/RUNTIME-PARITY.md` och `src/contracts/runtime-requirements.json`. Inga runtimes är aktiverade: riktiga hosttester krävs för webbåtkomst, källöppning och läsning av specifik manual. Offlinekontroller är inte funktionella hosttester.
+## Utveckling och tester
 
-## Distributioner v0.5.0-dev
-Se `docs/DISTRIBUTIONS.md`; bygg `python3 scripts/build_distributions.py --version 0.5.0-dev`. Dessa paket kräver hosttester före aktivering.
+```bash
+python3 scripts/validate_project.py
+python3 -m unittest discover -s tests -v
+python3 scripts/build_distributions.py --version 0.7.0-dev
+```
 
-## Praktisk acceptanskontroll
-Se `docs/ACCEPTANCE-TESTS.md` för ett test med en verklig IKEA-PDF samt kvarstående hosttester.
+GitHub Actions kör validering och tester vid pull requests. Release-workflow kör vid taggar `v*` och använder taggversionen vid byggning. Verifiera alltid det publicerade paketet innan det kallas en stabil release.
 
-## v0.7.0-dev – Verklighetsbaserat revisionsfall
-Bosch SMS46MI08E har flera officiellt listade revisioner. Acceptansrapporten dokumenterar detta samt begränsningen att inget installerat hosttest ännu genomförts.
+## Distributioner
+
+Projektet bygger kandidater för ChatGPT Chat, OpenAI Plugin, Claude Projects, Claude Skills och OpenCode. Samma canonical instruktion ligger till grund för paketeringen. **Att en ZIP byggs innebär inte att dess runtimefunktioner är verifierade.** Installations- och funktionskontroller ska göras separat för varje miljö.
+
+## Praktiskt test, 11 oktober 2026
+
+Användaren har rapporterat att en ChatGPT-konversation med Manualletaren ställde relevanta frågor och ledde fram till korrekt manual. Detta dokumenteras som ett **användarrapporterat godkänt end-to-end-test**, inte som oberoende verifierad PDF-/modellmatchning; transcript och exakta belägg kunde inte granskas direkt.
+
+Se `docs/ACCEPTANCE-TESTS.md` för övriga källkontroller och kvarstående releasekrav.
