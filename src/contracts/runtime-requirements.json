@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "required_for_functional_activation": ["web_search", "source_access", "manual_content_read"],
+  "optional": ["image_input", "code_execution"],
+  "runtimes": {
+    "chatgpt_chat": {"name": "ChatGPT Chat", "host_check_required": true},
+    "openai_plugin": {"name": "OpenAI Plugin", "host_check_required": true},
+    "claude_projects": {"name": "Claude Projects", "host_check_required": true},
+    "claude_skills": {"name": "Claude Skills", "host_check_required": true},
+    "opencode": {"name": "OpenCode", "host_check_required": true},
+    "chatgpt_custom": {"name": "ChatGPT Custom (historisk)", "historical": true}
+  }
+}
