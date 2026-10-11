@@ -1,0 +1,35 @@
+{
+  "version": "0.7.0-dev",
+  "distributions": [
+    {
+      "runtime": "chatgpt-chat",
+      "file": "manualletaren-chatgpt-chat-v0.7.0-dev.zip",
+      "sha256": "f075d706828405d105958e1ea22a673c65f343af8659225a85f562781da6e941",
+      "status": "packaged_not_host_verified"
+    },
+    {
+      "runtime": "openai-plugin",
+      "file": "manualletaren-openai-plugin-v0.7.0-dev.zip",
+      "sha256": "fab58a9a4ab1963400e073f8f82c214b2d46a5e6c1b59b7f2e893bf4f5d70c90",
+      "status": "packaged_not_host_verified"
+    },
+    {
+      "runtime": "claude-projects",
+      "file": "manualletaren-claude-projects-v0.7.0-dev.zip",
+      "sha256": "31f4c8af885efd26605bf1afbaf8732b1421615e9412dc093a81f3986e9e5947",
+      "status": "packaged_not_host_verified"
+    },
+    {
+      "runtime": "claude-skills",
+      "file": "manualletaren-claude-skills-v0.7.0-dev.zip",
+      "sha256": "676b767792d50c6e1bbf1417d6932ff7be2cdead22760646e3a45218f2a98eb9",
+      "status": "packaged_not_host_verified"
+    },
+    {
+      "runtime": "opencode",
+      "file": "manualletaren-opencode-v0.7.0-dev.zip",
+      "sha256": "c4501e754205550603828e898ded7342fd5ceabc5be059451ef2a1fbfcfac24e",
+      "status": "packaged_not_host_verified"
+    }
+  ]
+}

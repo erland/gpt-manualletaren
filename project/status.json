@@ -1,0 +1,23 @@
+{
+  "project": "manualletaren",
+  "version": "0.7.0-dev",
+  "workflow_state": "chat_package_reviewed_live_ambiguity_checked_host_acceptance_pending",
+  "robustness": "guided",
+  "completed_steps": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "next_step": "installed_chatgpt_chat_host_acceptance",
+  "runtimes_activated": [],
+  "release_ready": false,
+  "validation": "scripts/validate_project.py + unittest",
+  "updated": "2026-10-11",
+  "real_world_source_entrypoints_checked": true,
+  "live_manual_matching_verified": false,
+  "runtime_host_tests_verified": false,
+  "live_document_chain_checked": true,
+  "live_variant_ambiguity_checked": true
+}

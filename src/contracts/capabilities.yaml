@@ -1,0 +1,20 @@
+schema_version: 1
+capabilities:
+  - id: identify_product
+    required: true
+    inputs: [free_text, optional_image, optional_model_number]
+    outputs: [product_candidates, uncertainty]
+  - id: search_manual
+    required: true
+    host_requirement: web_search
+    outputs: [manual_candidates, source_urls]
+    fallback: explain_unverified_and_request_source
+  - id: verify_manual_match
+    required: true
+    host_requirement: source_access
+    outputs: [match_status, rationale]
+    fallback: downgrade_match_status
+  - id: answer_manual_questions
+    required: false
+    host_requirement: readable_manual
+    outputs: [grounded_answer, section_reference]
