@@ -1,0 +1,22 @@
+schema_version: 1
+project:
+  id: manualletaren
+  version: 0.7.0-dev
+  builder_version: 1.6.14
+delivery:
+  mode: github
+workflow:
+  state: migration_in_progress
+  completed_steps:
+    - inventory
+    - initial_model
+  active_step: install_original_engine
+next_step:
+  id: install_original_engine
+  action: Installera och verifiera GPT Byggarens originalmotor 1.6.14 före byte av distributionsbyggare.
+blocking_issues:
+  - Originalmotor och sex distributioner ännu inte installerade eller verifierade i GitHub.
+  - Verkliga hosttester återstår för alla fem runtime-mål.
+runtime:
+  activated: []
+release_ready: false
