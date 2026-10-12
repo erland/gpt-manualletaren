@@ -19,9 +19,9 @@ class LiveEvidenceTests(unittest.TestCase):
         # Build a fresh test distribution rather than relying on ZIPs checked into Git.
         subprocess.run(
             [sys.executable, str(ROOT / 'scripts/build_distributions.py'),
-             '--project-root', str(ROOT), '--version', 'test'],
+             '--project-root', str(ROOT), '--version', 'ci-test'],
             check=True, cwd=ROOT)
-        archive = ROOT / 'dist' / 'manualletaren-chat-test.zip'
+        archive = ROOT / 'dist' / 'manualletaren-chat-ci-test.zip'
         with zipfile.ZipFile(archive) as z:
             self.assertIsNone(z.testzip())
             instructions = z.read('assistant/instructions.md').decode('utf-8')
