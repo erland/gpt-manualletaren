@@ -20,6 +20,6 @@
   "runtime_host_tests_verified": false,
   "live_document_chain_checked": true,
   "live_variant_ambiguity_checked": true,
-  "builder_version": "1.6.14",
+  "builder_version": "1.6.19",
   "canonical_status": "project-status.yaml"
 }
