@@ -29,4 +29,4 @@ GPT Byggarens originalmotor v1.6.14 har i GitHub Actions byggt och validerat sex
 Officiell IKEA KALLAX-produktlänk följdes till en faktisk 36-sidig monterings-PDF. Se `docs/ACCEPTANCE-TESTS.md`. Inte en verifierad användarmanual och inte ett installerat hosttest. Fortsatt blockerare: T1–T5 i verklig installerad runtime.
 
 ## Steg 7 – migrering och projekthygien (2026-10-12)
-Originalmotor, canonical lint, CI och distributionsvalidering är införda. Historiska placeholders utan innehåll har tagits bort. Domänimplementationerna och deras tester behålls. Stabil release och runtimeparitet kräver installerade hosttester.
+Originalmotor, canonical lint, CI och distributionsvalidering är införda. Två strukturella resurspunkter för konversationsstartare och runtime-policy behålls enligt originalmotorns kontrakt, men dokumenterar nu tydligt att inga separata regler har definierats. Domänimplementationerna och deras tester behålls. Stabil release och runtimeparitet kräver installerade hosttester.
