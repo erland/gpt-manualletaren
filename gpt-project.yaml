@@ -1,0 +1,187 @@
+schema_version: 1
+project:
+  id: manualletaren
+  name: Manualletaren
+  language: sv
+  description: Identifiera produkter och hitta rätt användarmanual med verifierbara källor.
+development:
+  plan: docs/PROJECT-PLAN.md
+  status: project-status.yaml
+  human_readable_status: STATUS.md
+structure:
+  canonical_root: src
+  instructions:
+    path: src/canonical
+    required: true
+  knowledge:
+    path: docs
+    required: true
+  scripts:
+    path: scripts
+    required: true
+  tests:
+    path: tests
+    required: true
+  build:
+    path: build
+    generated: true
+  dist:
+    path: dist
+    generated: true
+instructions:
+  canonical:
+    path: src/canonical/instructions.md
+  source: src/canonical/instructions.md
+skills:
+  contract_version: 1
+  mode: explicit
+  definitions:
+    - id: product-identification
+      name: product-identification
+      description: Identifiera produktmodell, revision och region utan falsk precision.
+      references:
+        - docs/IDENTIFICATION.md
+    - id: manual-verification
+      name: manual-verification
+      description: Hitta källbelagda manualer och verifiera dokument och modellkoppling.
+      references:
+        - docs/MANUAL-SEARCH.md
+        - docs/RUNTIME-PARITY.md
+capabilities:
+  contract_version: 1
+  requirements:
+    web:
+      level: required
+    filesystem:
+      read: recommended
+      write: optional
+    shell:
+      level: optional
+    code_execution:
+      level: optional
+    structured_data:
+      level: recommended
+    persistent_state:
+      level: optional
+    external_tools:
+      level: optional
+    image_generation:
+      level: not_required
+tools:
+  contract_version: 1
+  tools: []
+runtime:
+  primary: chat_zip
+  chat_zip:
+    enabled: true
+    role: peer_distribution
+    entrypoint: START-HERE.md
+    layout:
+      assistant: assistant
+      knowledge: knowledge
+      schemas: schemas
+      scripts: scripts
+      templates: templates
+      runtime: runtime
+    include:
+      instructions:
+        - src/canonical/instructions.md
+      policies: []
+      conversation_starters: []
+      knowledge:
+        - docs/IDENTIFICATION.md
+        - docs/MANUAL-SEARCH.md
+        - docs/RUNTIME-PARITY.md
+      schemas: []
+      scripts: []
+      templates: []
+    exclude:
+      - .github/**
+      - .git/**
+      - build/**
+      - dist/**
+    deterministic_build: true
+  plugin:
+    enabled: true
+    role: peer_distribution
+    mode: openai_plugin
+    layout:
+      manifest_file: plugin.json
+      skills: skills
+      references: references
+      assets: assets
+      scripts: scripts
+    validation:
+      require_skill: true
+  claude:
+    enabled: true
+    role: peer_distribution
+    mode: claude_project
+    project:
+      instructions: project/instructions.md
+      knowledge: project/knowledge
+      runtime_contract: project/runtime-contract.json
+  opencode:
+    enabled: true
+    role: peer_distribution
+    mode: opencode_workspace
+    layout:
+      instructions: AGENTS.md
+      config: opencode.json
+      tools: .opencode/tools
+      runtime_scripts: scripts
+      runtime_contract: .opencode/runtime-contract.json
+      knowledge: knowledge
+    skills:
+      enabled: true
+      directory: .opencode/skills
+      definitions: []
+  custom_gpt:
+    enabled: false
+    role: peer_distribution
+build_system:
+  build_script: scripts/build_distributions.py
+  validation_script: scripts/validate_distributions.py
+  targets:
+    - project
+    - chat
+    - plugin
+    - claude_project
+    - claude_skills
+    - opencode
+  runtime_targets:
+    chat:
+      runtime_id: chatgpt_chat
+      runtime_key: chat_zip
+      builder: chat
+      artifact_type: chat_zip
+      filename_pattern: manualletaren-chat-<version>.zip
+    plugin:
+      runtime_id: openai_plugin
+      runtime_key: plugin
+      builder: plugin
+      artifact_type: plugin_zip
+      filename_pattern: manualletaren-plugin-<version>.zip
+    claude_project:
+      runtime_id: claude_project
+      runtime_key: claude
+      builder: claude
+      artifact_type: claude_project_zip
+      filename_pattern: manualletaren-claude-project-<version>.zip
+    claude_skills:
+      runtime_id: claude_skills
+      runtime_key: claude
+      builder: claude_skills
+      artifact_type: claude_skills_zip
+      filename_pattern: manualletaren-claude-skills-<version>.zip
+    opencode:
+      runtime_id: opencode
+      runtime_key: opencode
+      builder: opencode
+      artifact_type: opencode_zip
+      filename_pattern: manualletaren-opencode-<version>.zip
+  output_root: dist
+  working_root: build
+  deterministic_zip: true
+  manifest: true
+  checksums: sha256
