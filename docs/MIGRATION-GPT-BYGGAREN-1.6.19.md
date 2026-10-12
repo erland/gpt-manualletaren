@@ -14,7 +14,9 @@ Den befintliga canonical instruktionen och de två domän-Skills som hanterar pr
 - Testa modell- och regionidentifiering, korrekta manualbelägg, riktade följdfrågor och oförändrat beteende utan hittad dokumentlänk.
 
 ## Utförandestatus
-Det här är en förberedande migrationsgren. Originalmotorn v1.6.19 har ännu **inte** installerats i denna gren och någon ny lint/bygg/CI för v1.6.19 har ännu **inte** verifierats. `project-status.yaml` behåller därför den senast verifierade motorns version 1.6.14.
+Originalmotorns centrala bygg-, validerings- och Skills-bibliotek från GPT Byggaren v1.6.19 är installerade från originaltaggen `erland/gpt-byggaren@v1.6.19`. GitHub Actions har passerat med denna motor i [run 38299824420](https://github.com/erland/gpt-manualletaren/actions/runs/38299824420). Projektets status anger nu byggarversion 1.6.19. Den första CI-körningen upptäckte ett saknat biblioteksberoende som åtgärdades före godkänd körning.
+
+Installerade hosttester för sökning, faktisk manual-PDF och modell-/regionkoppling återstår. Releaseklar är fortfarande false.
 
 ## Kvalitetsgrindar före release
 1. Installera fullständig originalmotor v1.6.19 utan handmodifiering.
@@ -25,4 +27,4 @@ Det här är en förberedande migrationsgren. Originalmotorn v1.6.19 har ännu *
 6. Granska att testerna lyckats på GitHub Actions och uppdatera sedan versionsfält och projektstatus.
 7. Låt host-acceptanstester och releasebeslut ligga kvar som öppna grindar tills de verkligen är utförda.
 
-**Ingen merge eller release ingår i denna förberedande ändring.**
+**Ingen merge eller release ingår i denna ändring.**
