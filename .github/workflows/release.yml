@@ -1,4 +1,4 @@
-name: Release project ZIP
+name: Release canonical distributions
 on:
   push:
     tags: ['v*']
@@ -12,45 +12,35 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate project
+      - run: python3 -m pip install PyYAML jsonschema
+      - name: Validate canonical project and domain
         run: |
+          python3 scripts/lint_gpt_project.py --project-root .
           python3 scripts/validate_project.py
           python3 -m unittest discover -s tests -v
-      - name: Build only current release
-        shell: bash
+      - name: Build and validate canonical distribution
         run: |
           set -euo pipefail
           VERSION="${GITHUB_REF_NAME#v}"
-          rm -rf dist
-          python3 scripts/build.py --version "$VERSION"
-      - name: Verify and stage release artifacts
-        shell: bash
-        run: |
-          set -euo pipefail
-          VERSION="${GITHUB_REF_NAME#v}"
-          python3 - "$VERSION" <<'PY'
-          import json, sys, zipfile, shutil
+          rm -rf build dist
+          python3 scripts/build_distributions.py --project-root . --version "$VERSION"
+          python3 scripts/validate_distributions.py --project-root .
+          python3 - <<'PY'
           from pathlib import Path
-          version=sys.argv[1]
-          manifest=json.loads(Path('dist/manifest.json').read_text(encoding='utf-8'))
-          assert manifest['version']==version
-          distributions=manifest['distributions']
-          expected={'chatgpt-chat','openai-plugin','claude-projects','claude-skills','opencode'}
-          assert {x['runtime'] for x in distributions}==expected and len(distributions)==5
-          project=Path('..')/f'manualletaren-project-v{version}.zip'
-          paths=[project]+[Path('dist')/x['file'] for x in distributions]
-          stage=Path('release-assets')
-          stage.mkdir(exist_ok=True)
-          for p in paths:
-              assert p.is_file(), f'Missing artifact: {p}'
-              with zipfile.ZipFile(p) as z:
-                  assert z.testzip() is None, f'Corrupt ZIP: {p}'
-              shutil.copy2(p,stage/p.name)
-          shutil.copy2('dist/manifest.json',stage/'manifest.json')
-          assert len(list(stage.glob('*.zip')))==6
-          print('Verified six current-version ZIP files and manifest')
+          import json, zipfile
+          p=Path('dist')
+          manifest=json.loads((p/'DELIVERY-MANIFEST.json').read_text())
+          files=list(p.glob('*.zip'))
+          assert len(files)==6, [x.name for x in files]
+          for archive in files:
+              with zipfile.ZipFile(archive) as z:
+                  assert z.testzip() is None, archive
+          print('All six ZIP archives verified')
           PY
       - uses: softprops/action-gh-release@v2
         with:
           fail_on_unmatched_files: true
-          files: release-assets/*
+          files: |
+            dist/*.zip
+            dist/DELIVERY-MANIFEST.json
+            dist/SHA256SUMS
