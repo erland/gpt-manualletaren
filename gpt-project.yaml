@@ -13,12 +13,6 @@ structure:
   instructions:
     path: src/canonical
     required: true
-  conversation_starters:
-    path: src/conversation-starters
-    required: false
-  runtime_policy:
-    path: src/runtime-policy
-    required: false
   templates:
     path: templates
     required: false
