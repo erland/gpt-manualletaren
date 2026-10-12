@@ -14,7 +14,7 @@ Manualletaren är en svensk GPT för att identifiera produkter och hitta rätt a
 
 ## Build och distribution
 
-Originalmotorn från GPT Byggaren v1.6.14 är avsedd att bygga projekt-ZIP och fem separata runtime-arkiv. Så länge CI inte har verifierat distributionspaketen är detta en migrationskandidat, inte en stabil release.
+Originalmotorn från GPT Byggaren v1.6.19 är avsedd att bygga projekt-ZIP och fem separata runtime-arkiv. GitHub Actions har verifierat lint, projekttester och distributionsbyggen. Praktiska hosttester återstår före stabil release.
 
 ## Kvalitetsgränser
 
@@ -23,4 +23,4 @@ Originalmotorn från GPT Byggaren v1.6.14 är avsedd att bygga projekt-ZIP och f
 - Verklig åtkomst till manualinnehåll krävs för verifierad dokumentkoppling
 - Ingen fabricerad länk, sidangivelse eller påstådd runtimekapacitet
 
-Se `STATUS.md` och `docs/MIGRATION-GPT-BYGGAREN-1.6.14.md` för migrationsstatus.
+Se `STATUS.md` och `docs/MIGRATION-GPT-BYGGAREN-1.6.19.md` för migrationsstatus.

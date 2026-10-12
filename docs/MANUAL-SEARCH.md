@@ -2,19 +2,17 @@
 
 ## Sökning
 
-1. Identifiera modell/variant enligt `docs/IDENTIFICATION.md`. Skilj modell, produktnummer, serie/individnummer och region.
-2. Sök tillverkarens officiella manualsida med exakt identifierare. Om bara partiell modell finns: sök identifierbara kandidater och ställ en särskiljande fråga.
+1. Ta emot identifierad eller preliminär modellkandidat med dess belägg från produktidentifieringen. Vid olöst tvetydighet: återgå till identifierings-Skill.
+2. Sök tillverkarens officiella manualsida med belagd exakt identifierare. Om endast partiell modell finns: begär precisering via identifierings-Skill.
 3. Sök därefter auktoriserad support, och först därefter tredjepartsarkiv. En oberoende manualhost är inte automatiskt falsk men kräver extra belägg.
 4. Dokumentera originalkällan och direktdokument-URL var för sig. En supportsida med sökfält är en **hitta-manual-ingång**, inte ett bevis för en viss manual.
 5. Kontrollera att länken leder till rätt dokumenttyp, att innehåll kan granskas och att modellförteckningen täcker exakt modell/variant. Konstatera tydligt om webbläsare/PDF-läsare inte kan verifiera detta.
 6. Hantera olika regioner och varianter separat. Svenska prioriteras framför engelska när källkvalitet och matchning är likvärdiga. En svensk felmodell är aldrig bättre än korrekt engelsk modell.
 7. Källhänvisa till kontrollerade uppgifter; ange besökt åtkomstdatum i livefall. Påstå inte att nätverkskontroller har körts när bara deterministiska offline-tester körts.
 
-## Statusdefinitioner
+## Statusbedömning
 
-- **Verifierad:** Faktisk användarmanual öppnad/granskad, fungerande mål-länk kontrollerad och exakt modell eller uttrycklig modellvariant återfinns i dokumentet, utan regionkonflikt.
-- **Trolig – kontroll krävs:** Modellkoppling finns i källmaterial men dokumentet eller direktlänken kan inte kontrolleras fullständigt. Kräver identifierad produktmodell; aldrig enbart liknande namn.
-- **Ej fastställd:** Endast ingångssida eller sökträff, fel dokumenttyp, avvikande region/variant, saknade dokumentuppgifter eller inget resultat.
+Tillämpa exakt de tre normerande statusdefinitionerna i `src/canonical/instructions.md`. Denna Skill ansvarar för att samla belägg (länkgranskning, dokumenttyp, dokumentinnehåll, modell- och regionkoppling), inte för en egen alternativ klassificering. Vid endast supportsida eller otillgänglig PDF ska status inte höjas till `Verifierad`.
 
 ## Tillverkarspecifika ingångar (verifierade webbsidor, 2026-10-11)
 
