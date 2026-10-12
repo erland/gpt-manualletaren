@@ -12,7 +12,8 @@
 
 ## Kvarstående acceptans
 - Praktiska installerade hosttester av webbsökning, dokumentåtkomst, PDF-innehåll och exakt modellmatchning.
-- Eventuell granskning av överflödiga historiska projektfiler inför merge/release.
+- Fortsatt verifiering av domänscenarier och installerade värdmiljöer före stabil release.
+- `project-status.yaml` är auktoritativ status, medan `project/status.json` används för äldre kontroller och hålls synkroniserad.
 - Separat releasebeslut.
 
 **Releaseklar:** nej. **Aktiverade runtimes:** inga.
