@@ -1,7 +1,7 @@
 {
   "project": "manualletaren",
   "version": "0.7.0-dev",
-  "workflow_state": "canonical_build_and_ci_verified_host_acceptance_pending",
+  "workflow_state": "builder_1_6_19_ci_verified_host_acceptance_pending",
   "robustness": "guided",
   "completed_steps": [
     1,
