@@ -37,6 +37,14 @@ jobs:
                   assert z.testzip() is None, archive
           print('All six ZIP archives verified')
           PY
+      - name: Generate and verify release checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd dist
+          sha256sum -- *.zip DELIVERY-MANIFEST.json > SHA256SUMS
+          test "$(wc -l < SHA256SUMS)" -eq 7
+          sha256sum --check SHA256SUMS
       - uses: softprops/action-gh-release@v2
         with:
           fail_on_unmatched_files: true
