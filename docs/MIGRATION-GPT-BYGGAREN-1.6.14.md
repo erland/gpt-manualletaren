@@ -2,7 +2,7 @@
 
 **Projekt:** Manualletaren (`v0.7.0-dev`)  
 **Mål:** Beteendebevarande migrering till originalmotorn från GPT Byggaren v1.6.14  
-**Tillstånd:** Inventering genomförd; runtimeaktivering och motorinstallation ännu ej verifierade.
+**Tillstånd:** Originalmotorn installerad och CI-verifierad; hostacceptans och releasebeslut återstår.
 
 ## Verifierade utgångspunkter
 
@@ -30,7 +30,7 @@
 - **Canonical källa:** projektunik instruktion, kompletterande manual- och identifieringskunskap samt tydliga capability-/verktygskontrakt.
 - **Projektmodell:** `gpt-project.yaml` och `project-status.yaml` enligt den versionerade originalmotorns kontrakt; fem explicita `build_system.runtime_targets` samt `runtime.chat_zip`, `runtime.plugin`, `runtime.claude`, `runtime.opencode` och inaktiverad `runtime.custom_gpt`.
 - **Skills:** lämplig uppdelning i produktidentifiering och manualsökning/dokumentverifiering, med delade principer för samtliga runtime-mål. Skills får inte hävda tillgång till verktyg som saknas.
-- **Byggsystem:** originalmotorn `distribution-engine/` v1.6.14, installerad med dess egna `scripts/install_distribution_engine.py`. Inga egenutvecklade ersättningsbyggare.
+- **Byggsystem:** originalmotorns verifierade skript och mallar från Git-taggen v1.6.14; upstream-installationsskriptet medföljer. Inga egenutvecklade ersättningsbyggare.
 - **Utdata:** separat projekt-ZIP och de fem runtime-arkiven ChatGPT Chat, OpenAI Plugin, Claude Projects, Claude Skills och OpenCode.
 - **CI:** GitHub Actions ska köra originalmotorns lint, tester och byggvalidering på PR och release; `dist/` ska inte versionshanteras.
 
@@ -46,9 +46,7 @@
 
 ## Nuvarande blockerare
 
-Det är ännu **inte verifierat** att projektet uppfyller originalmotorns fullständiga projektkontrakt. Därför är ingen runtime aktiverad, ingen gammal paketerare borttagen och inga nya distributioner påstått byggda.
-
-**Nästa genomförandesteg:** skapa den fullständiga projektunika canonical modellen och installera originalmotorn på denna branch. Fortsätt på samma PR tills byggning, tester och dokumentationshygien är klara.
+Installerade hosttester för webbsökning, dokumentläsning och modellkoppling återstår. Canonical lint, tester och sex distributioner är redan CI-verifierade; ingen runtime är aktiverad och stabil release är inte godkänd.
 
 ## Genomförande och verifiering, 12 oktober 2026
 
