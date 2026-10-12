@@ -33,6 +33,7 @@ instructions:
   source: src/canonical/instructions.md
 skills:
   contract_version: 1
+  schema: schemas/skill-contract.schema.json
   mode: explicit
   definitions:
     - id: product-identification
@@ -48,6 +49,8 @@ skills:
         - docs/RUNTIME-PARITY.md
 capabilities:
   contract_version: 1
+  schema: schemas/capability-contract.schema.json
+  recommendation_mode: explicit
   requirements:
     web:
       level: required
@@ -68,6 +71,7 @@ capabilities:
       level: not_required
 tools:
   contract_version: 1
+  schema: schemas/tool-contract.schema.json
   tools: []
 runtime:
   primary: chat_zip
