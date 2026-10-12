@@ -2,11 +2,11 @@ schema_version: 1
 project:
   id: manualletaren
   version: 0.7.0-dev
-  builder_version: 1.6.14
+  builder_version: 1.6.19
 delivery:
   mode: github
 workflow:
-  state: canonical_build_and_ci_verified_host_acceptance_pending
+  state: builder_1_6_19_ci_verified_host_acceptance_pending
   completed_steps:
     - inventory
     - canonical_model
