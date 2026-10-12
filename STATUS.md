@@ -1,21 +1,16 @@
 # Manualletaren – projektstatus
 
-**Version:** 0.7.0-dev. **Migrering:** GPT Byggaren v1.6.14 på PR #3.
+**Projektversion:** 0.7.0-dev. **Byggmotor:** GPT Byggaren v1.6.19 (PR #5, omergad).
 
-## Klar i migrationsbranchen
-- Canonical modell, projektstatus och två Skills har skapats.
-- Originalmotorns åtta källfiler (byggare, installerare, validatorer och delade bibliotek) är **byte-identiska** med Git-taggen `erland/gpt-byggaren@v1.6.14` enligt Git blob-SHA.
-- Den gamla ZIP-assemblern har ersatts med en bakåtkompatibel delegator till originalmotorn.
-- GitHub Actions använder canonical lint, projekttester, originalmotorns byggning och validering.
-- GitHub Actions har passerat kontrollen av sex ZIP-arkiv för projektet och dess fem runtime-distributioner.
-- Byggdokumentation och release-workflow är uppdaterade.
+## Verifierat
+- Canonical projektmodell och två separata domän-Skills finns kvar.
+- Centrala bygg-, lint-, distributions- och Skills-bibliotek är hämtade från GPT Byggarens v1.6.19-tagg.
+- GitHub Actions kör lint, domän- och regressionstester samt bygger och validerar sex arkiv.
+- CI har passerat på versionsmigreringen; se `docs/MIGRATION-GPT-BYGGAREN-1.6.19.md`.
+- `project-status.yaml` är normerande; `project/status.json` hålls synkroniserad för bakåtkompatibilitet.
 
-## Kvarstående acceptans
-- Praktiska installerade hosttester av webbsökning, dokumentåtkomst, PDF-innehåll och exakt modellmatchning.
-- Fortsatt verifiering av domänscenarier och installerade värdmiljöer före stabil release.
-- `project-status.yaml` är auktoritativ status, medan `project/status.json` används för äldre kontroller och hålls synkroniserad.
-- Separat releasebeslut.
+## Kvarstår
+- Installerade hosttester av webbsökning, PDF-innehåll och exakt modell-/variantkoppling.
+- Separat beslut om merge och stabil release.
 
 **Releaseklar:** nej. **Aktiverade runtimes:** inga.
-
-Se `project-status.yaml`, `project/status.json` och `docs/MIGRATION-GPT-BYGGAREN-1.6.14.md`.

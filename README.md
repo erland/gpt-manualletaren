@@ -2,7 +2,7 @@
 
 En svenskspråkig GPT som hjälper användare att identifiera produkter och hitta rätt användarmanual med verifierbara källor, även utan exakt modellbeteckning.
 
-**Aktuell projektversion:** v0.7.0-dev. **Migrering:** till GPT Byggarens originalmotor v1.6.14 på PR #3. GitHub-CI och sex distributionsarkiv behöver verifieras innan merge; ingen stabil release eller verifierad runtimeparitet ännu.
+**Aktuell projektversion:** v0.7.0-dev. **Byggmotor:** GPT Byggaren v1.6.19 på PR #5. Canonical lint, tester och sex distributionsarkiv har verifierats i GitHub Actions; installerade hosttester och stabil release återstår.
 
 ## Så fungerar det
 
@@ -39,7 +39,7 @@ GitHub Actions kör validering och tester vid pull requests. Release-workflow k�
 
 ## Distributioner
 
-Projektet bygger kandidater för ChatGPT Chat, OpenAI Plugin, Claude Projects, Claude Skills och OpenCode. GPT Byggarens originalmotor v1.6.14 bygger projekt-ZIP plus de fem runtime-arkiven från samma canonical instruktion. **Att en ZIP byggs innebär inte att dess runtimefunktioner är verifierade.** Installations- och funktionskontroller ska göras separat för varje miljö.
+Projektet bygger kandidater för ChatGPT Chat, OpenAI Plugin, Claude Projects, Claude Skills och OpenCode. GPT Byggarens originalmotor v1.6.19 bygger projekt-ZIP plus de fem runtime-arkiven från samma canonical instruktion. **Att en ZIP byggs innebär inte att dess runtimefunktioner är verifierade.** Installations- och funktionskontroller ska göras separat för varje miljö.
 
 ## Praktiskt test, 11 oktober 2026
 

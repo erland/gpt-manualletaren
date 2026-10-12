@@ -1,6 +1,6 @@
-# Distributioner – GPT Byggaren v1.6.14
+# Distributioner – GPT Byggaren v1.6.19
 
-Projektet använder originalmotorns `scripts/build_distributions.py` från den versionslåsta källtaggen `erland/gpt-byggaren@v1.6.14`. De ursprungliga byggfilerna behåller sina Git blob-hashar.
+Projektet använder originalmotorns `scripts/build_distributions.py` från den versionslåsta källtaggen `erland/gpt-byggaren@v1.6.19`. De ursprungliga byggfilerna behåller sina Git blob-hashar.
 
 ## Sex leveransarkiv
 
