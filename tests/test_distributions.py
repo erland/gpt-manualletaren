@@ -26,7 +26,7 @@ class DistributionTests(unittest.TestCase):
                 self.assertTrue(zf.namelist())
 
     def test_runtime_formats_are_distinct(self):
-        runtime = [p for p in self.archives if "-project-" not in p.name]
+        runtime = [p for p in self.archives if p.name != "manualletaren-project-ci-test.zip"]
         self.assertEqual(len(runtime), 5)
         with_archives = []
         for archive in runtime:
