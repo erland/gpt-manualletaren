@@ -60,7 +60,6 @@ skills:
       description: Hitta källbelagda manualer och verifiera dokument och modellkoppling.
       references:
         - docs/MANUAL-SEARCH.md
-        - docs/RUNTIME-PARITY.md
 capabilities:
   contract_version: 1
   schema: schemas/capability-contract.schema.json
