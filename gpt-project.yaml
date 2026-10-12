@@ -13,6 +13,18 @@ structure:
   instructions:
     path: src/canonical
     required: true
+  conversation_starters:
+    path: src/conversation-starters
+    required: false
+  runtime_policy:
+    path: src/runtime-policy
+    required: false
+  templates:
+    path: templates
+    required: false
+  schemas:
+    path: schemas
+    required: false
   knowledge:
     path: docs
     required: true
@@ -28,6 +40,8 @@ structure:
   dist:
     path: dist
     generated: true
+knowledge_architecture:
+  canonical_root: docs
 instructions:
   canonical: src/canonical/instructions.md
   source: src/canonical/instructions.md
@@ -79,6 +93,7 @@ runtime:
     enabled: true
     role: peer_distribution
     entrypoint: START-HERE.md
+    start_here_template: templates/START-HERE.chat.md.tpl
     layout:
       assistant: assistant
       knowledge: knowledge
@@ -105,6 +120,8 @@ runtime:
       - dist/**
     deterministic_build: true
   plugin:
+    templates:
+      readme: templates/README.plugin.md.tpl
     enabled: true
     role: peer_distribution
     mode: openai_plugin
@@ -117,6 +134,8 @@ runtime:
     validation:
       require_skill: true
   claude:
+    templates:
+      readme: templates/README.claude.md.tpl
     enabled: true
     role: peer_distribution
     mode: claude_project
@@ -125,6 +144,8 @@ runtime:
       knowledge: project/knowledge
       runtime_contract: project/runtime-contract.json
   opencode:
+    templates:
+      readme: templates/README.opencode.md.tpl
     enabled: true
     role: peer_distribution
     mode: opencode_workspace
