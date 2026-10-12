@@ -60,3 +60,7 @@ Installerade hosttester för webbsökning, dokumentläsning och modellkoppling �
 **Verifieringsgräns:** Godkänt CI och sex giltiga ZIP betyder inte att den installerade assistenten har verifierad åtkomst till produktwebb, PDF-innehåll eller exakt manual/variant. Därför kvarstår release-gaten; `release_ready: false` och inga aktiverade runtimes.
 
 **Nästa steg:** manuell domän- och hostacceptans, städa historiska filer med avgränsad påverkan, och besluta först därefter om merge/release.
+
+## Projekthygien efter slutkontroll
+
+`project-status.yaml` är normerande status. `project/status.json` synkroniseras som kompatibilitetsfil för äldre domäntester; ett regressionstest bevakar dessa värden. `build/` och `dist/` ignoreras i Git. Originalmotorn förutsätter explicita `structure.conversation_starters` och `structure.runtime_policy` även när resurserna är valfria, så deras README-filer behålls med konkret förklaring i stället för att tas bort. Den historiska `scripts/build.py` behålls endast som delegator för befintliga arbetsflöden, utan separat ZIP-logik.
