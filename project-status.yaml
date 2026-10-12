@@ -1,0 +1,30 @@
+schema_version: 1
+project:
+  id: manualletaren
+  version: 0.7.0-dev
+  builder_version: 1.6.14
+delivery:
+  mode: github
+workflow:
+  state: canonical_build_and_ci_verified_host_acceptance_pending
+  completed_steps:
+    - inventory
+    - canonical_model
+    - domain_skills
+    - install_original_engine
+    - canonical_lint
+    - tests
+    - six_artifact_build
+    - distribution_validation
+    - github_ci
+    - build_documentation
+  active_step: installed_runtime_host_acceptance
+next_step:
+  id: installed_runtime_host_acceptance
+  action: Genomför och dokumentera installerade hosttester för använda runtime-mål innan stabil release.
+blocking_issues:
+  - Installerade hosttester för webbsökning, faktisk PDF-läsning och modellkoppling återstår.
+  - Verifierad runtimeparitet och stabil release har inte godkänts.
+runtime:
+  activated: []
+release_ready: false

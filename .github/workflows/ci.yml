@@ -11,9 +11,26 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python3 scripts/validate_project.py
-      - run: python3 -m unittest discover -s tests -v
-      - name: Smoke-test the complete release build
+      - run: python3 -m pip install PyYAML jsonschema
+      - name: Canonical project lint
+        run: python3 scripts/lint_gpt_project.py --project-root .
+      - name: Legacy project and domain tests
         run: |
-          rm -rf dist
-          python3 scripts/build.py --version ci-test
+          python3 scripts/validate_project.py
+          python3 -m unittest discover -s tests -v
+      - name: Validate canonical distributions
+        run: python3 scripts/validate_distributions.py --project-root .
+      - name: Assert delivery artifacts
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, zipfile
+          p=Path('dist')
+          manifest=json.loads((p/'DELIVERY-MANIFEST.json').read_text())
+          archives=list(p.glob('*.zip'))
+          assert len(archives)==6, [x.name for x in archives]
+          for archive in archives:
+              with zipfile.ZipFile(archive) as z:
+                  assert z.testzip() is None, archive
+          print('Validated six canonical archives and delivery manifest')
+          PY

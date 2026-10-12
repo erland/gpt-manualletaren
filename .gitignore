@@ -1,4 +1,5 @@
 dist/
+build/
 release-assets/
 __pycache__/
 *.py[cod]

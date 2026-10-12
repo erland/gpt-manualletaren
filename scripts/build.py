@@ -1,14 +1,29 @@
+#!/usr/bin/env python3
+"""Backward-compatible entrypoint for the canonical GPT Byggaren 1.6.14 engine.
+
+The old custom ZIP assembler has been removed. All six distributions are now
+created by scripts/build_distributions.py and checked by its validator.
+"""
+import argparse
+import subprocess
+import sys
 from pathlib import Path
-import argparse,zipfile,subprocess,sys
-ROOT=Path(__file__).resolve().parents[1]
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--version',required=True); args=parser.parse_args()
- subprocess.run(['python3',str(ROOT/'scripts/validate_project.py')],check=True)
- subprocess.run([sys.executable,str(ROOT/'scripts/build_distributions.py'),'--version',args.version],check=True)
- out=ROOT.parent/f'manualletaren-project-v{args.version}.zip'
- with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED) as z:
-  for file in sorted(ROOT.rglob('*')):
-   if file.is_file() and '__pycache__' not in file.parts and '.pyc' not in file.suffix: z.write(file,arcname=f'manualletaren/{file.relative_to(ROOT)}')
- with zipfile.ZipFile(out) as z: assert z.testzip() is None
- print(out)
-if __name__=='__main__': main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--version", required=True)
+    args = parser.parse_args()
+    for command in (
+        [sys.executable, str(ROOT / "scripts/validate_project.py")],
+        [sys.executable, str(ROOT / "scripts/lint_gpt_project.py"), "--project-root", str(ROOT)],
+        [sys.executable, str(ROOT / "scripts/build_distributions.py"), "--project-root", str(ROOT), "--version", args.version],
+        [sys.executable, str(ROOT / "scripts/validate_distributions.py"), "--project-root", str(ROOT)],
+    ):
+        subprocess.run(command, check=True, cwd=ROOT)
+
+
+if __name__ == "__main__":
+    main()

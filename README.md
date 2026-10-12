@@ -2,7 +2,7 @@
 
 En svenskspråkig GPT som hjälper användare att identifiera produkter och hitta rätt användarmanual med verifierbara källor, även utan exakt modellbeteckning.
 
-**Aktuell projektversion:** v0.7.0-dev. **Status:** utvecklingsprojekt med godkänd GitHub-CI och användarrapporterat lyckat ChatGPT-test. Ingen stabil release eller verifierad runtimeparitet ännu.
+**Aktuell projektversion:** v0.7.0-dev. **Migrering:** till GPT Byggarens originalmotor v1.6.14 på PR #3. GitHub-CI och sex distributionsarkiv behöver verifieras innan merge; ingen stabil release eller verifierad runtimeparitet ännu.
 
 ## Så fungerar det
 
@@ -18,7 +18,8 @@ En svenskspråkig GPT som hjälper användare att identifiera produkter och hitt
 - Produktidentifiering: `docs/IDENTIFICATION.md`
 - Manualsökning och beläggskrav: `docs/MANUAL-SEARCH.md`
 - Utvecklingsplan: `docs/PROJECT-PLAN.md`
-- Strukturerad projektstatus: `project/status.json`
+- Canonical projektmodell: `gpt-project.yaml`
+- Canonical projektstatus: `project-status.yaml` (historisk status i `project/status.json`)
 - Runtimebegränsningar: `docs/RUNTIME-PARITY.md`
 - Distributionsbeskrivning: `docs/DISTRIBUTIONS.md`
 - Acceptanstester: `docs/ACCEPTANCE-TESTS.md`
@@ -26,16 +27,19 @@ En svenskspråkig GPT som hjälper användare att identifiera produkter och hitt
 ## Utveckling och tester
 
 ```bash
+python3 -m pip install PyYAML jsonschema
+python3 scripts/lint_gpt_project.py --project-root .
 python3 scripts/validate_project.py
 python3 -m unittest discover -s tests -v
-python3 scripts/build_distributions.py --version 0.7.0-dev
+python3 scripts/build_distributions.py --project-root . --version 0.7.0-dev
+python3 scripts/validate_distributions.py --project-root .
 ```
 
 GitHub Actions kör validering och tester vid pull requests. Release-workflow kör vid taggar `v*` och använder taggversionen vid byggning. Verifiera alltid det publicerade paketet innan det kallas en stabil release.
 
 ## Distributioner
 
-Projektet bygger kandidater för ChatGPT Chat, OpenAI Plugin, Claude Projects, Claude Skills och OpenCode. Samma canonical instruktion ligger till grund för paketeringen. **Att en ZIP byggs innebär inte att dess runtimefunktioner är verifierade.** Installations- och funktionskontroller ska göras separat för varje miljö.
+Projektet bygger kandidater för ChatGPT Chat, OpenAI Plugin, Claude Projects, Claude Skills och OpenCode. GPT Byggarens originalmotor v1.6.14 bygger projekt-ZIP plus de fem runtime-arkiven från samma canonical instruktion. **Att en ZIP byggs innebär inte att dess runtimefunktioner är verifierade.** Installations- och funktionskontroller ska göras separat för varje miljö.
 
 ## Praktiskt test, 11 oktober 2026
 

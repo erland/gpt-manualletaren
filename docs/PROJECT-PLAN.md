@@ -23,7 +23,10 @@ Hitta en korrekt användarmanual även med ofullständiga produktuppgifter, med 
 Ingen egen crawlingplattform, PDF-hosting, persistent användarprofil eller leverantörsspecifik integration i första versionen.
 
 ## Steg 5 – distributioner
-Fem distributioner byggda och strukturellt testade i v0.5.0-dev. Faktiska hosttester är nästa blockerande gate före releaseklar status.
+GPT Byggarens originalmotor v1.6.14 har i GitHub Actions byggt och validerat sex ZIP-filer (projektet och fem runtime-distributioner). Nästa releaseblockerare är praktiska installerade hosttester. Canonical status finns i `project-status.yaml`; `project/status.json` är en kompatibilitetsspegel för äldre domäntester.
 
 ## Steg 6 – praktisk källkontroll
 Officiell IKEA KALLAX-produktlänk följdes till en faktisk 36-sidig monterings-PDF. Se `docs/ACCEPTANCE-TESTS.md`. Inte en verifierad användarmanual och inte ett installerat hosttest. Fortsatt blockerare: T1–T5 i verklig installerad runtime.
+
+## Steg 7 – migrering och projekthygien (2026-10-12)
+Originalmotor, canonical lint, CI och distributionsvalidering är införda. Två strukturella resurspunkter för konversationsstartare och runtime-policy behålls enligt originalmotorns kontrakt, men dokumenterar nu tydligt att inga separata regler har definierats. Domänimplementationerna och deras tester behålls. Stabil release och runtimeparitet kräver installerade hosttester.
