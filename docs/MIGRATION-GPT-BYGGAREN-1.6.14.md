@@ -49,3 +49,16 @@
 Det är ännu **inte verifierat** att projektet uppfyller originalmotorns fullständiga projektkontrakt. Därför är ingen runtime aktiverad, ingen gammal paketerare borttagen och inga nya distributioner påstått byggda.
 
 **Nästa genomförandesteg:** skapa den fullständiga projektunika canonical modellen och installera originalmotorn på denna branch. Fortsätt på samma PR tills byggning, tester och dokumentationshygien är klara.
+
+## Genomförande och verifiering, 12 oktober 2026
+
+- Installerade den ursprungliga distributonsmotorns åtta källfiler från den versionslåsta Git-taggen `erland/gpt-byggaren@v1.6.14`. Alla åtta jämfördes separat med Git blob-SHA och var identiska.
+- Kompletterade projektmodellen med Knowledge-källa, runtime-mallar, Skills-kontrakt och de schemafiler som krävs för lint.
+- Uppdaterade tester som använde den gamla, interna `build()`-funktionen till originalmotorns CLI, och anpassade testernas versionsnamn så att exakt sex arkiv genereras.
+- Anpassade PR-CI och release-workflow till `scripts/lint_gpt_project.py`, `scripts/build_distributions.py` och `scripts/validate_distributions.py`.
+- GitHub Actions genomförde godkänd lint, projektets unittest-svit, byggning, distributionvalidering, och ZIP-/leveransmanifestkontroll för sex arkiv (bl.a. commit `75e5b53a` och `2df87fdf`).
+- `scripts/build.py` är nu endast en delegator, utan separat ZIP-assembler. Dokumentationen beskriver canonical kommandon.
+
+**Verifieringsgräns:** Godkänt CI och sex giltiga ZIP betyder inte att den installerade assistenten har verifierad åtkomst till produktwebb, PDF-innehåll eller exakt manual/variant. Därför kvarstår release-gaten; `release_ready: false` och inga aktiverade runtimes.
+
+**Nästa steg:** manuell domän- och hostacceptans, städa historiska filer med avgränsad påverkan, och besluta först därefter om merge/release.
