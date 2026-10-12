@@ -23,7 +23,7 @@ class MigrationContractTests(unittest.TestCase):
     def test_identity_and_canonical_source(self):
         self.assertEqual(self.model["project"]["id"], "manualletaren")
         self.assertEqual(self.model["project"]["language"], "sv")
-        path = self.model["instructions"]["canonical"]["path"]
+        path = self.model["instructions"]["canonical"]
         self.assertTrue((ROOT / path).is_file())
 
     def test_six_build_targets_and_engine_contract(self):
