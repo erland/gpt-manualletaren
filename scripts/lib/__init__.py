@@ -1,1 +1,1 @@
-# Shared canonical distribution engine library.
+"""Shared GPT Byggaren project model helpers."""
