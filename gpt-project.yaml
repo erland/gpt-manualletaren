@@ -29,8 +29,7 @@ structure:
     path: dist
     generated: true
 instructions:
-  canonical:
-    path: src/canonical/instructions.md
+  canonical: src/canonical/instructions.md
   source: src/canonical/instructions.md
 skills:
   contract_version: 1
